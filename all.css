@@ -1,0 +1,277 @@
+@import "lib/leaflet/leaflet.css";
+@import "lib/fontawesome/css/all.css";
+@import "lib/geoman/leaflet-geoman.css";
+
+.ptolemy-wrapper { 
+    height: 600px;
+    width: 100%;
+    margin: 10px auto;
+ }
+
+ table td .ptolemy-wrapper{
+    height: 300px;
+    min-width: 280px;
+ }
+
+.ptolemy-map { 
+    height: 100%;
+    width: 100%;
+    background: black;
+    position: relative;
+ }
+
+ .ptolemy-map .leaflet-pane{ /* Fix for dokuwiki menus that need to stay on top. Dokuwiki's search auto-complete dropdown has a z-index of 20. */
+    z-index: 15;
+ }
+
+.ptolemy-loading{
+    font-size: 35px;
+    width: 40px;
+    height: 50px;
+    color: white;
+	animation: pulse 2s infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+ }
+
+ @keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+        opacity: .5;
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        opacity: 1;
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        opacity: .5;
+	}
+}
+
+.ptolemy-map .ptolemy-map-commands{
+    top: 70px;
+    position: relative;
+ }
+
+.ptolemy-map .leaflet-control-layers, .ptolemy-map .ptolemy-map-commands, .leaflet-pm-toolbar{
+    visibility: hidden;
+ }
+ 
+.ptolemy-map:hover .leaflet-control-layers, .ptolemy-map:hover .ptolemy-map-commands{
+    visibility: visible;
+ }
+
+.ptolemy-map .pm-text-marker .pm-textarea{
+    padding: 4px;
+ }
+
+.ptolemy-map.expand{
+    position: fixed !important;
+    width: 90%;
+    height: 90%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1100;
+ }
+
+ .ptolemy-map.expand .leaflet-control-layers, .ptolemy-map.expand .ptolemy-map-commands, .ptolemy-map.expand .leaflet-pm-toolbar{
+     visibility: visible;
+  }
+
+.ptolemy-underlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: rgba(0,0,0,0.85);
+    z-index: 1090;
+    top: 0;
+    left: 0;
+}
+
+.ptolemy-map-commands a {
+    font-size: 1rem;
+}
+
+.ptolemy-map.coordToClipboardMode{    
+    cursor: crosshair !important;
+}
+
+.ptolemy-map .markerPopupIconWrapper img.markerIcon{
+    max-width:40px;
+}
+
+/* Marker styling */
+
+.ptolemy-map .leaflet-marker-icon .ptolemy-map-marker:parent{
+    max-width: 40px !important;
+    position: relative;
+}
+
+/* Popup styling */
+.markerPopupWrapper{
+    position: relative;
+}
+
+.markerPopupIconWrapper{
+    position: relative;
+    float: left;
+    left: -10px;
+    font-size: 38px;
+}
+
+.markerPopupWrapper .markerPopupTextWrapper{
+    margin-left: 40px;
+}
+
+.markerPopupWrapper .popupTitle{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.markerPopupWrapper a.popupLink{
+    text-decoration: none;
+    padding-top: 5px;
+    display: block;
+}
+
+/* Toast styling */
+
+.ptolemy-toast{
+    padding: 6px 10px;
+    color: #ffffff;
+    display: inline-block;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: absolute;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;    
+    left: 15px;
+    bottom: 15px;
+}
+
+.ptolemy-toast.error{
+    background: -webkit-linear-gradient(315deg, #f85c5c, #fa4f4f);
+    background: linear-gradient(135deg, #f85c5c, #fa4f4f);
+}
+
+/* Changes for the wiki to make it work better with Leaflet.js */
+
+ #dokuwiki__pagetools div.tools ul:hover,  #dokuwiki__pagetools div.tools:hover{ /* Small fix so that the map doesn't overlap the controls; done here because leaflet specifies z-index very frequently */
+     z-index:1000;
+ }
+
+/* Changes for Leaflet.js to make it work/look better in the wiki */
+
+ .leaflet-control-layers-overlays{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+ }
+
+ .leaflet-control-container a{
+    text-decoration: none;
+    color: #2b73b7;
+ }
+
+ .leaflet-touch .leaflet-bar a {
+    text-decoration: none !important;
+}
+
+.leaflet-touch .leaflet-bar a:hover{
+    background-color: #ddd;
+}
+
+.leaflet-bar a.leaflet-inactive {
+	cursor: pointer;
+	background-color: #f4f4f4;
+	color: #999;
+	}
+
+.leaflet-bar a.leaflet-expand-active {
+    cursor: pointer;
+    background-color: #fff;
+    color: #2b73b7;
+    }
+
+.leaflet-pm-toolbar.leaflet-pm-draw{
+    top: 95px;
+}
+
+.leaflet-pm-toolbar.leaflet-pm-edit{
+    top: 90px;
+}
+
+.leaflet-popup-content .geoman-popup{
+    display: block;
+    min-width: 160px;
+    margin-top: 18px;
+}
+
+.leaflet-popup-content .geoman-popup .geoman-title{
+    position: relative;
+    display: block;
+    top: -10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-bottom: 1px solid #aaa;
+}
+
+.leaflet-popup-content .geoman-popup .geoman-label{
+    display: inline-block;
+    font-weight: bold;
+    width: 70px;
+}
+
+.leaflet-popup-content .geoman-popup .geoman-data{
+    display: inline-block;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin: 0 5px;
+    font-weight: bold;
+    width: 165px;
+}
+
+.leaflet-popup-content .geoman-popup .geoman-tip{
+    display: inline-block;
+    font-weight: normal;
+    font-style: italic;
+    font-size: .9em;
+    color: #666;
+    margin-top: 10px;
+}
+
+.leaflet-popup-content .geoman-popup .geoman-copy-button{
+    display: inline-block;
+    background: #2b73b7;
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.leaflet-popup-content .geoman-popup .geoman-copy-button:hover{
+    background: #52a3ef;
+}
+
+.leaflet-popup-content .geoman-popup .geoman-copy-button:active{
+    transform: translateY(2px) translateX(2px);
+}

@@ -1,0 +1,7 @@
+base   ptolemy
+author Brad Osborne
+email  bosborne.csm@gmail.com
+date   2023-04-11
+name   ptolemy
+desc   Add an interactive map that uses struct data to populate itself
+url    https://stararmy.com/wiki/doku.php?id=guide:maps
